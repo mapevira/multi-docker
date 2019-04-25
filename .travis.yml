@@ -14,7 +14,7 @@ after_success:
   - docker build -t mapevira/multi-server ./server
   - docker build -t mapevira/multi-worker ./worker
   # Log in to the docker CLI
-  - docker login -u "$DOCKER_USERNAME" -p "$DOCKER_PASSWORD"
+  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
   # Take those images and push them to docker hub
   - docker push mapevira/multi-client
   - docker push mapevira/multi-nginx
