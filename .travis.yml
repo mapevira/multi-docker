@@ -3,21 +3,21 @@ services:
   - docker
 
 before_install:
-  - docker build -t mapevira/react-test -f ./client/Dockerfile.dev ./client
+  - docker build -t rperezvicente/react-test -f ./client/Dockerfile.dev ./client
 
 script:
-  - docker run mapevira/react-test npm test -- --coverage
+  - docker run rperezvicente/react-test npm test -- --coverage
 
 after_success:
-  - docker build -t mapevira/multi-client ./client
-  - docker build -t mapevira/multi-nginx ./nginx
-  - docker build -t mapevira/multi-server ./server
-  - docker build -t mapevira/multi-worker ./worker
+  - docker build -t rperezvicente/multi-client ./client
+  - docker build -t rperezvicente/multi-nginx ./nginx
+  - docker build -t rperezvicente/multi-server ./server
+  - docker build -t rperezvicente/multi-worker ./worker
   # Log in to the docker CLI
   - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
   # Take those images and push them to docker hub
-  - docker push mapevira/multi-client
-  - docker push mapevira/multi-nginx
-  - docker push mapevira/multi-server
-  - docker push mapevira/multi-worker
+  - docker push rperezvicente/multi-client
+  - docker push rperezvicente/multi-nginx
+  - docker push rperezvicente/multi-server
+  - docker push rperezvicente/multi-worker
   
